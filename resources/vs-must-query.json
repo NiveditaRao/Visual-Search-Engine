@@ -1,0 +1,19 @@
+{
+  "_source": true,
+  "query": {
+    "bool": {
+      "must": [{ "match": { "category": "ankle_boots" } }]
+    }
+  },
+  "script_fields": {
+    "distance": {
+      "script": {
+        "lang": "expression",
+        "source": "doc['conf_sc'] - ref_conf_sc",
+        "params": {
+          "ref_conf_sc": 0.9999974
+        }
+      }
+    }
+  }
+}
